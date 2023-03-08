@@ -2,7 +2,7 @@ from flask import Flask, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from models import db, User
+from models import db, User, Spreadsheet, Column
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -58,4 +58,4 @@ def user_by_id(id):
         return response
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5555, debug=False)

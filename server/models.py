@@ -9,8 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password_hash = db.Column(db.String(128))
-
-    spreadsheets = db.relationship('Spreadsheet', backref='users')
+    spreadsheets = db.relationship('Spreadsheet', backref='user')
 
     def __repr__(self):
         return f'<Spreadsheet User {self.username}>'
@@ -21,14 +20,12 @@ class Spreadsheet(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-
-
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    columns = db.relationship('Column', backref='spreadsheets')
+    columns = db.relationship('Column', backref='spreadsheet')
 
-    def __repr__(self):
-        return f'<Spreadsheet {self.name} >'
+def repr(self):
+        return f'<Spreadsheet {self.name} user id => {self.user_id}>'
 
 #
 class Column(db.Model):

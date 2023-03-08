@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+Faker = "14.2.0"
 flask = "2.2.2"
 flask-migrate = "3.1.0"
 flask-sqlalchemy = "2.5.1"

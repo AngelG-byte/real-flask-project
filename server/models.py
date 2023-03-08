@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey, Table, Column, Integer, String, DateTime, func
 
 db = SQLAlchemy()
 
@@ -28,7 +29,8 @@ class Spreadsheet(db.Model):
     columns = db.relationship('Column', backref='spreadsheets')
 
     def __repr__(self):
-        return f'<Spreadsheet {self.name} >'
+        return f'<Spreadsheet {self.name} >,' + \
+            f'<Spreadsheet {self.user_id}'
 
 #
 class Column(db.Model):
@@ -36,5 +38,11 @@ class Column(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String, nullable=True)
     value = db.Column(db.Integer, nullable=True)
+    created_at = Column(DateTime(), server_default=func.now())
+    updated_at = Column(DateTime(), onupdate=func.now())
 
     spreadsheet_id = db.Column(db.Integer, db.ForeignKey('spreadsheets.id'))
+    def __repr__(self):
+        return f'<Column {self.text} >, ' + \
+                f'<Column {self.id} >,' + \
+                f'<Column {self.value} >,'

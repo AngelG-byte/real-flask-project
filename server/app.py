@@ -22,7 +22,6 @@ def user_by_id(id):
         <h2>id is {user.id}</h2>
         <h2>Information for {user.username}</h2>
         <h2>email is {user.email}</h2>
-        <h2> spreadsheets => {}<h2>
     '''
 
     response = make_response(response_body, 200)

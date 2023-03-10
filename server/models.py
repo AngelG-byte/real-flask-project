@@ -25,14 +25,8 @@ class Spreadsheet(db.Model):
 
     columns = db.relationship('Column', backref='spreadsheet')
 
-<<<<<<< HEAD
 def repr(self):
         return f'<Spreadsheet {self.name} user id => {self.user_id}>'
-=======
-    def __repr__(self):
-        return f'<Spreadsheet {self.name} >,' + \
-            f'<Spreadsheet {self.user_id}'
->>>>>>> origin/routes-get
 
 #
 class Column(db.Model):

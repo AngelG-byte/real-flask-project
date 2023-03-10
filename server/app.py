@@ -34,7 +34,8 @@ def users():
 
         response = make_response(
             jsonify(users),
-            200
+            200,
+            {"Content-Type": "application/json"}
         )
 
         return response
@@ -49,7 +50,11 @@ def users():
 
 
 
-        response = make_response("user created")
+        response = make_response(
+            "user created",
+            201,
+         {"Content-Type": "application/json"}
+         )
 
 
         return response
@@ -59,13 +64,10 @@ def users():
 def user_by_id(id):
         user = User.query.filter(User.id == id).first()
 
-        user_dict = {
-            "id": user.id,
-            "username": user.username,
-            "email": user.email
-        }
+        user_dict = user.to_dict()
+
         response = make_response(
-            user_dict,
+            jsonify(user_dict),
             200
             )
 
